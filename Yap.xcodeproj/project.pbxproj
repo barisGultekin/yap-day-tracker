@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		60344C772639759C00E33787 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60344C762639759C00E33787 /* Item.swift */; };
 		608525DA2635A3A90012B132 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608525D92635A3A90012B132 /* AppDelegate.swift */; };
 		608525DC2635A3A90012B132 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608525DB2635A3A90012B132 /* SceneDelegate.swift */; };
 		608525DE2635A3A90012B132 /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608525DD2635A3A90012B132 /* TodoListViewController.swift */; };
@@ -18,7 +17,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		60344C762639759C00E33787 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		608525D62635A3A90012B132 /* Yap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		608525D92635A3A90012B132 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		608525DB2635A3A90012B132 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -44,7 +42,7 @@
 		60344C79263975A400E33787 /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
-				60344C762639759C00E33787 /* Item.swift */,
+				609214AC263EB768000D1249 /* DataModel.xcdatamodeld */,
 			);
 			path = "Data Model";
 			sourceTree = "<group>";
@@ -53,7 +51,6 @@
 			isa = PBXGroup;
 			children = (
 				608525DD2635A3A90012B132 /* TodoListViewController.swift */,
-				609214AC263EB768000D1249 /* DataModel.xcdatamodeld */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -175,7 +172,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				60344C772639759C00E33787 /* Item.swift in Sources */,
 				609214AE263EB768000D1249 /* DataModel.xcdatamodeld in Sources */,
 				608525DE2635A3A90012B132 /* TodoListViewController.swift in Sources */,
 				608525DA2635A3A90012B132 /* AppDelegate.swift in Sources */,
@@ -391,8 +387,7 @@
 				609214AD263EB768000D1249 /* DataModel.xcdatamodel */,
 			);
 			currentVersion = 609214AD263EB768000D1249 /* DataModel.xcdatamodel */;
-			name = DataModel.xcdatamodeld;
-			path = "../Data Model/DataModel.xcdatamodeld";
+			path = DataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

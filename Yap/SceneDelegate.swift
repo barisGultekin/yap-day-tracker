@@ -15,31 +15,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate
     {
         guard let _ = (scene as? UIWindowScene) else { return }
     }
-
-    func sceneDidDisconnect(_ scene: UIScene)
-    {
-        //terminated
-        print("sceneDidDisconnect")
-    }
-
-    func sceneDidBecomeActive(_ scene: UIScene)
-    {
-        print("sceneDidBecomeActive")
-    }
-
-    func sceneWillResignActive(_ scene: UIScene)
-    {
-        print("sceneWillResignActive")
-    }
-
-    func sceneWillEnterForeground(_ scene: UIScene)
-    {
-        print("sceneWillEnterForeground")
-    }
-
-    func sceneDidEnterBackground(_ scene: UIScene)
-    {
-        print("sceneDidEnterBackground")
-    }
 }
 
