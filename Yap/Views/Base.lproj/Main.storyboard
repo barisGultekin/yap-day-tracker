@@ -31,7 +31,14 @@
                             <outlet property="delegate" destination="YSK-io-SZE" id="p3O-bP-nnP"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="YAP" id="zvZ-HA-3Tl"/>
+                    <navigationItem key="navigationItem" title="YAP" id="zvZ-HA-3Tl">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Fq0-9S-N5X">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="addButtonPressed:" destination="YSK-io-SZE" id="Ewy-WX-kDp"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GmM-Xk-cWM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
