@@ -12,11 +12,14 @@ class TodoListViewController: UITableViewController
 {
     var itemArray = [Item]()
     
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        searchBar.delegate = self
         loadItems()
     }
     
@@ -57,6 +60,7 @@ class TodoListViewController: UITableViewController
             self.deleteItem(at: indexPath.row)
             completionHandler(true)
         }
+        
         return UISwipeActionsConfiguration(actions: [deleteAction])
     }
     
@@ -114,12 +118,11 @@ class TodoListViewController: UITableViewController
         {
             print("Error saving context: \(error)")
         }
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
     
-    func loadItems()
+    func loadItems(with request: NSFetchRequest<Item> = Item.fetchRequest())
     {
-        let request: NSFetchRequest<Item> = Item.fetchRequest()
         do
         {
             itemArray = try context.fetch(request)
@@ -128,6 +131,7 @@ class TodoListViewController: UITableViewController
         {
             print("Error fetching items\(error)")
         }
+        tableView.reloadData()
     }
     
     func deleteItem(at index: Int)
@@ -135,6 +139,25 @@ class TodoListViewController: UITableViewController
         context.delete(itemArray[index])
         itemArray.remove(at: index)
         saveItems()
+    }
+}
+
+//MARK: - Search Bar
+extension TodoListViewController: UISearchBarDelegate
+{
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar)
+    {
+        let request: NSFetchRequest<Item> = Item.fetchRequest()
+        
+        request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+
+        loadItems(with: request)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar)
+    {
+        loadItems()
     }
 }
 
