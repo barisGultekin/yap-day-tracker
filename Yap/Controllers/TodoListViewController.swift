@@ -155,9 +155,27 @@ extension TodoListViewController: UISearchBarDelegate
         loadItems(with: request)
     }
     
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar)
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String)
     {
-        loadItems()
+        if searchBar.text?.count == 0
+        {
+            loadItems()
+            
+            DispatchQueue.main.async
+            {
+                searchBar.resignFirstResponder()
+            }
+        }
+        else
+        {
+            let request: NSFetchRequest<Item> = Item.fetchRequest()
+            
+            request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+            request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+
+            loadItems(with: request)
+        }
+        
     }
 }
 
