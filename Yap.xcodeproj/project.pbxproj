@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,7 @@
 		608525E62635A3AB0012B132 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 608525E42635A3AB0012B132 /* LaunchScreen.storyboard */; };
 		609214AE263EB768000D1249 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 609214AC263EB768000D1249 /* DataModel.xcdatamodeld */; };
 		60CB3228264956DA008538ED /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CB3227264956DA008538ED /* CategoryViewController.swift */; };
+		FEB03D444B04995EE985806D /* Pods_Yap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BB347F59FBD602BC056015 /* Pods_Yap.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,9 @@
 		608525E72635A3AB0012B132 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		609214AD263EB768000D1249 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		60CB3227264956DA008538ED /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		81BB347F59FBD602BC056015 /* Pods_Yap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BFE626F090F5BA31FD0BDBCC /* Pods-Yap.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yap.release.xcconfig"; path = "Target Support Files/Pods-Yap/Pods-Yap.release.xcconfig"; sourceTree = "<group>"; };
+		ECF566154DE85D6D49CBD855 /* Pods-Yap.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yap.debug.xcconfig"; path = "Target Support Files/Pods-Yap/Pods-Yap.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,18 +39,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEB03D444B04995EE985806D /* Pods_Yap.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		60344C79263975A400E33787 /* Data Model */ = {
+		47CABD5FAB23F9B55989EBAE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				81BB347F59FBD602BC056015 /* Pods_Yap.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		60344C79263975A400E33787 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				609214AC263EB768000D1249 /* DataModel.xcdatamodeld */,
 			);
-			path = "Data Model";
+			path = Model;
 			sourceTree = "<group>";
 		};
 		60344C7A263975B800E33787 /* Controllers */ = {
@@ -80,6 +93,8 @@
 			children = (
 				608525D82635A3A90012B132 /* Yap */,
 				608525D72635A3A90012B132 /* Products */,
+				E97D91B590F8B879D0FFB726 /* Pods */,
+				47CABD5FAB23F9B55989EBAE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -96,13 +111,22 @@
 			children = (
 				608525D92635A3A90012B132 /* AppDelegate.swift */,
 				608525DB2635A3A90012B132 /* SceneDelegate.swift */,
-				60344C79263975A400E33787 /* Data Model */,
+				60344C79263975A400E33787 /* Model */,
 				60344C7A263975B800E33787 /* Controllers */,
 				60344C7B263975C600E33787 /* Views */,
 				60344C7C263975D200E33787 /* Supporting Files */,
 				608525E72635A3AB0012B132 /* Info.plist */,
 			);
 			path = Yap;
+			sourceTree = "<group>";
+		};
+		E97D91B590F8B879D0FFB726 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				ECF566154DE85D6D49CBD855 /* Pods-Yap.debug.xcconfig */,
+				BFE626F090F5BA31FD0BDBCC /* Pods-Yap.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -112,9 +136,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 608525EA2635A3AB0012B132 /* Build configuration list for PBXNativeTarget "Yap" */;
 			buildPhases = (
+				5534C4457F83CA2313C0417D /* [CP] Check Pods Manifest.lock */,
 				608525D22635A3A90012B132 /* Sources */,
 				608525D32635A3A90012B132 /* Frameworks */,
 				608525D42635A3A90012B132 /* Resources */,
+				F8BA71B92D8BFC4E6E51FBD8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -169,6 +195,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5534C4457F83CA2313C0417D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Yap-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F8BA71B92D8BFC4E6E51FBD8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Yap/Pods-Yap-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Yap/Pods-Yap-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Yap/Pods-Yap-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		608525D22635A3A90012B132 /* Sources */ = {
@@ -323,6 +391,7 @@
 		};
 		608525EB2635A3AB0012B132 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ECF566154DE85D6D49CBD855 /* Pods-Yap.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -343,6 +412,7 @@
 		};
 		608525EC2635A3AB0012B132 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BFE626F090F5BA31FD0BDBCC /* Pods-Yap.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
