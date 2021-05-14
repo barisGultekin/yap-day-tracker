@@ -36,17 +36,6 @@ class CategoryViewController: UITableViewController
         }
     }
     
-    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
-    {
-        let deleteAction = UIContextualAction(style: .destructive,
-                                              title: "Delete")
-        { action, view, completionHandler in
-            self.deleteCategory(at: indexPath.row)
-            completionHandler(true)
-        }
-        
-        return UISwipeActionsConfiguration(actions: [deleteAction])
-    }
     
     // MARK: - TableView Datasource
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
