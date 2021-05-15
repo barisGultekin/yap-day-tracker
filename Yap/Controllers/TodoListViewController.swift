@@ -32,7 +32,7 @@ class TodoListViewController: UITableViewController
         title = selectedCategory!.name
     }
     
-    //MARK: - Table View Delegate
+    //MARK: - Table View Data Source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
@@ -79,7 +79,7 @@ class TodoListViewController: UITableViewController
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
     {
         let deleteAction = UIContextualAction(style: .destructive,
-                                              title: "Delete") //try '􀈒' on physical device!
+                                              title: "Delete")
         { (action, view, completionHandler) in
             self.deleteItem(at: indexPath.row)
             completionHandler(true)

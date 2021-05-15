@@ -36,8 +36,19 @@ class CategoryViewController: UITableViewController
         }
     }
     
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
+    {
+        let deleteAction = UIContextualAction(style: .destructive,
+                                              title: "Delete")
+        { action, view, completionHandler in
+            self.deleteCategory(at: indexPath.row, with: indexPath)
+            completionHandler(true)
+        }
+        
+        return UISwipeActionsConfiguration(actions: [deleteAction])
+    }
     
-    // MARK: - TableView Datasource
+    // MARK: - TableView Setup
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return categories?.count ?? 1
@@ -51,6 +62,26 @@ class CategoryViewController: UITableViewController
         cell.textLabel?.text = categories?[indexPath.row].name
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        var res: CGFloat = UIScreen.main.bounds.height/12
+        if let sizer = categories?.count
+        {
+            if sizer > 10
+            {
+                res = UIScreen.main.bounds.height/CGFloat(sizer)
+            }
+            if sizer > 16
+            {
+                res = UIScreen.main.bounds.height/16
+            }
+        }else
+        {
+            res = UIScreen.main.bounds.height/12
+        }
+        return res
     }
     
     //MARK: - Add Item
@@ -109,7 +140,7 @@ class CategoryViewController: UITableViewController
         tableView.reloadData()
     }
     
-    func deleteCategory(at index: Int)
+    func deleteCategory(at index: Int, with indexPath: IndexPath)
     {
         if let category = categories?[index]
         {
@@ -118,6 +149,7 @@ class CategoryViewController: UITableViewController
                 try realm.write
                 {
                     realm.delete(category)
+                    tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.left)
                 }
             }
             catch
