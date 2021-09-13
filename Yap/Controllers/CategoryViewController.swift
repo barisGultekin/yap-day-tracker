@@ -7,8 +7,9 @@
 
 import UIKit
 import RealmSwift
+import SwipeCellKit
 
-class CategoryViewController: UITableViewController
+class CategoryViewController: UITableViewController, SwipeTableViewCellDelegate
 {
     let realm = try! Realm()
     
@@ -36,17 +37,44 @@ class CategoryViewController: UITableViewController
         }
     }
     
-    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]?
     {
-        let deleteAction = UIContextualAction(style: .destructive,
-                                              title: "Delete")
-        { action, view, completionHandler in
-            self.deleteCategory(at: indexPath.row, with: indexPath)
-            completionHandler(true)
+        guard orientation == .right else { return nil }
+
+        let deleteAction = SwipeAction(style: .destructive, title: "Delete")
+        { action, indexPath in
+            self.deleteCategory(at: indexPath.row)
         }
-        
-        return UISwipeActionsConfiguration(actions: [deleteAction])
+
+        // customize the action appearance
+        deleteAction.image = UIImage(named: "delete")
+
+        return [deleteAction]
     }
+    
+
+    func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions
+    {
+        var options = SwipeOptions()
+        
+        options.expansionStyle = .destructive
+        options.transitionStyle = .border
+        
+        return options
+    }
+
+    
+//    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
+//    {
+//        let deleteAction = UIContextualAction(style: .destructive,
+//                                              title: "Delete")
+//        { action, view, completionHandler in
+//            self.deleteCategory(at: indexPath.row, with: indexPath)
+//            completionHandler(true)
+//        }
+//
+//        return UISwipeActionsConfiguration(actions: [deleteAction])
+//    }
     
     // MARK: - TableView Setup
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
@@ -57,9 +85,11 @@ class CategoryViewController: UITableViewController
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView
-            .dequeueReusableCell(withIdentifier: "CategoryItemCell", for: indexPath)
+            .dequeueReusableCell(withIdentifier: "CategoryItemCell", for: indexPath) as! SwipeTableViewCell
         
         cell.textLabel?.text = categories?[indexPath.row].name
+        
+        cell.delegate = self
         
         return cell
     }
@@ -140,7 +170,7 @@ class CategoryViewController: UITableViewController
         tableView.reloadData()
     }
     
-    func deleteCategory(at index: Int, with indexPath: IndexPath)
+    func deleteCategory(at index: Int)
     {
         if let category = categories?[index]
         {
@@ -149,7 +179,6 @@ class CategoryViewController: UITableViewController
                 try realm.write
                 {
                     realm.delete(category)
-                    tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.left)
                 }
             }
             catch

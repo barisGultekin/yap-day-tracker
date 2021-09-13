@@ -8,7 +8,7 @@
 import UIKit
 import RealmSwift
 
-class TodoListViewController: UITableViewController
+class TodoListViewController: SwipeTableViewController
 {
     var selectedCategory: Category?
     {
@@ -21,7 +21,7 @@ class TodoListViewController: UITableViewController
     let realm = try! Realm()
     
     var items: Results<Item>?
-    
+        
     @IBOutlet weak var searchBar: UISearchBar!
         
     override func viewDidLoad()
@@ -32,7 +32,7 @@ class TodoListViewController: UITableViewController
         title = selectedCategory!.name
     }
     
-    //MARK: - Table View Data Source
+    //MARK: - Table View Setup
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
@@ -41,8 +41,7 @@ class TodoListViewController: UITableViewController
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView
-            .dequeueReusableCell(withIdentifier: "TodoItemCell", for: indexPath)
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         
         if let item = items?[indexPath.row]
         {
@@ -53,8 +52,13 @@ class TodoListViewController: UITableViewController
         return cell
     }
     
-    //MARK: - Item Actions
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        let res: CGFloat = UIScreen.main.bounds.height/8
+        return res
+    }
     
+    //MARK: - TableView Actions
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         if let item = items?[indexPath.row]
@@ -75,19 +79,6 @@ class TodoListViewController: UITableViewController
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
-    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
-    {
-        let deleteAction = UIContextualAction(style: .destructive,
-                                              title: "Delete")
-        { (action, view, completionHandler) in
-            self.deleteItem(at: indexPath.row)
-            completionHandler(true)
-        }
-        
-        return UISwipeActionsConfiguration(actions: [deleteAction])
-    }
-    
     
     //MARK: - Add Item
     
@@ -163,7 +154,7 @@ class TodoListViewController: UITableViewController
         tableView.reloadData()
     }
     
-    func deleteItem(at index: Int)
+    override func deleteItem(at index: Int)
     {
         if let item = items?[index]
         {
@@ -179,7 +170,6 @@ class TodoListViewController: UITableViewController
                 print("--Error deleting item: \(error)")
             }
         }
-        tableView.reloadData()
     }
 }
 
